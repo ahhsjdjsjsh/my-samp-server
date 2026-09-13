@@ -1,0 +1,26 @@
+name: Unzip Server Files
+
+on:
+  push:
+    paths:
+      - 'Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip'
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Zip to Root Layer
+        run: |
+          unzip -o Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip
+          rm Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip
+
+      - name: Commit Unzipped Folders
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@://github.com"
+          git add .
+          git commit -m "Automatically unpacked server files to root"
+          git push
