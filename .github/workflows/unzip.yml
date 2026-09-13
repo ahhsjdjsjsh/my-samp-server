@@ -1,0 +1,26 @@
+name: Unzip Server Files
+
+on:
+  push:
+    paths:
+      - 'server.zip'
+
+jobs:
+  unpack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Zip to Root Layer
+        run: |
+          unzip -o server.zip
+          rm server.zip
+
+      - name: Commit Unzipped Folders
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Automatically unpacked server files to root"
+          git push
