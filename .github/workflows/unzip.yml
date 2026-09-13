@@ -3,7 +3,7 @@ name: Unzip Server Files
 on:
   push:
     paths:
-      - 'server.zip'
+      - 'Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip'
 
 jobs:
   unpack:
@@ -14,13 +14,13 @@ jobs:
 
       - name: Extract Zip to Root Layer
         run: |
-          unzip -o server.zip
-          rm server.zip
+          unzip -o Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip
+          rm Prime_Mobile_RP_Drizzy_Powell_Max_Level.zip
 
       - name: Commit Unzipped Folders
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "github-actions[bot]@://github.com"
           git add .
           git commit -m "Automatically unpacked server files to root"
           git push
